@@ -1,0 +1,24 @@
+model Shipment {
+  id               String           @id @default(uuid())
+  status           ShipmentStatus
+  startLocation    String
+  endLocation      String
+  wayPoints        String[]
+  totalWeight      Float
+  distanceKm       Float?
+  totalCost        Float
+  estimatedArrival DateTime
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  requestId        String           @unique
+  vehicleId        String?
+  driverId         String?
+  farmId           String
+  transportId      String?
+  farm             Farm             @relation(fields: [farmId], references: [id])
+  transportRequest TransportRequest @relation(fields: [requestId], references: [id])
+  vehicle          Vehicle?          @relation(fields: [vehicleId], references: [id])
+  driver           Driver?           @relation(fields: [driverId], references: [id])
+  transport        Transport?        @relation(fields: [transportId], references: [id])
+  deliveryProofs   DeliveryProof[]
+}

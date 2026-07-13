@@ -1,0 +1,15 @@
+model Transport {
+  id          String                   @id @default(uuid())
+  name        String
+  email       String                   @unique
+  phoneNumber String
+  address     String
+  status      EntityStatus
+  farmId      String
+  createdAt   DateTime                 @default(now())
+  updatedAt   DateTime                 @updatedAt
+  isArchived  Boolean                  @default(false)
+  farm        Farm                     @relation(fields: [farmId], references: [id])
+  contracts   TransportationContract[]
+  shipment    Shipment[]
+}

@@ -1,0 +1,10 @@
+echo "🔍 Pre-commit: lint-staged (eslint + prettier sur les fichiers modifiés)"
+npx lint-staged
+
+echo "🔍 Pre-commit: TypeScript typecheck"
+npm run typecheck
+
+echo "🔍 Pre-commit: tests unitaires (rapide)"
+npm run test -- --run
+
+echo "✅ Pre-commit checks passed"

@@ -1,0 +1,69 @@
+export enum Status {
+  HOLIDAY = "HOLIDAY",
+  ACTIVE = "ACTIVE",
+  INACTIVE = "INACTIVE",
+}
+
+export enum VehicleType {
+  TRUCK = "TRUCK",
+  LONGTRUCK = "LONGTRUCK",
+  VAN = "VAN",
+  TRACTOR = "TRACTOR",
+  TRANSIT = "TRANSIT",
+}
+
+export enum FuelType {
+  DIESEL = "DIESEL",
+  GASOLINE = "GASOLINE",
+  ELECTRIC = "ELECTRIC",
+}
+
+export enum VehicleStatus {
+  AVAILABLE = "AVAILABLE",
+  UNAVAILABLE = "UNAVAILABLE",
+}
+
+export enum EntityStatus {
+  ACTIVE = "ACTIVE",
+  INACTIVE = "INACTIVE",
+}
+
+export enum ShipmentStatus {
+  PENDING = "PENDING",
+  PLANNED = "PLANNED",
+  IN_TRANSIT = "IN_TRANSIT",
+  AT_WAREHOUSE = "AT_WAREHOUSE",
+  DELIVERED = "DELIVERED",
+  DELAYED = "DELAYED",
+  RETURNED = "RETURNED",
+}
+
+export enum RequestStatus {
+  PENDING = "PENDING",
+  APPROVED = "APPROVED",
+  CANCELLED = "CANCELLED",
+}
+
+export enum CategoryType {
+  PACKAGING = "PACKAGING",
+  FERTILIZER = "FERTILIZER",
+  MACHINERY = "MACHINERY",
+  CHEMICALS = "CHEMICALS",
+  EQUIPMENT = "EQUIPMENT",
+  PERSONAL = "PERSONAL",
+}
+
+export enum ContractType {
+  PERMANENT = "PERMANENT",
+  TEMPORARY = "TEMPORARY",
+  PER_TRIP = "PER_TRIP",
+}
+
+export enum Role {
+  ADMIN = "ADMIN",
+  MANAGER = "MANAGER",
+  MEMBER = "MEMBER",
+  WORKER = "WORKER",
+  POINTER = "POINTER",
+  IRRIGATOR = "IRRIGATOR",
+}

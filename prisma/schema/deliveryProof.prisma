@@ -1,0 +1,13 @@
+model DeliveryProof {
+  id              String   @id @default(uuid())
+  recipientName   String
+  receivedAt      DateTime
+  signature       String?          
+  proofUrl        String?          
+  isValid         Boolean  @default(true) 
+  rejectionReason String?           
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  shipmentId      String     
+  shipment        Shipment @relation(fields: [shipmentId], references: [id])
+}

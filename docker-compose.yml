@@ -1,0 +1,74 @@
+﻿services:
+  transport-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: transport-api
+    command: sh -c "npx prisma db push && npm run dev"
+    ports:
+      - '3001:3001'
+    volumes:
+      - .:/app
+      - node_modules_vol:/app/node_modules
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgresql://transportuser:transportpass@transport-postgres:5432/transportdb?schema=public
+      REDIS_URL: redis://transport-redis:6379
+      KAFKA_BROKERS: kafka:29092
+      PORT: 3001
+      HOST: 0.0.0.0
+      PEPPER_SECRET_KEY: 'supersecretpepperkey123!'
+      JWT_SECRET: 'supersecretjwtaccesskey123!'
+    depends_on:
+      transport-postgres:
+        condition: service_healthy
+      transport-redis:
+        condition: service_healthy
+    networks:
+      - stock-network
+    restart: unless-stopped
+
+  transport-postgres:
+    image: postgres:16-alpine
+    container_name: transport-postgres
+    environment:
+      POSTGRES_DB: transportdb
+      POSTGRES_USER: transportuser
+      POSTGRES_PASSWORD: transportpass
+    ports:
+      - '5434:5432'
+    volumes:
+      - transport-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U transportuser -d transportdb']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - stock-network
+    restart: unless-stopped
+
+  transport-redis:
+    image: redis:7-alpine
+    container_name: transport-redis
+    ports:
+      - '6380:6379'
+    volumes:
+      - transport-redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - stock-network
+    restart: unless-stopped
+
+networks:
+  stock-network:
+    external: true
+
+volumes:
+  transport-postgres-data:
+  transport-redis-data:
+  node_modules_vol:

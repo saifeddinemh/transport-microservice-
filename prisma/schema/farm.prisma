@@ -1,0 +1,19 @@
+model Farm {
+  id        String      @id @default(uuid())
+  farmName  String
+  ownerId   String
+  address   String?
+  country   String?
+  city      String?
+  postcode  String?
+  totalArea Float?
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  owners    FarmOwner[]
+  employees Employee[]
+  drivers   Driver[]
+  vehicles  Vehicle[]
+  shipment  Shipment[]
+  transport Transport[]
+  transportRequests   TransportRequest[]
+}

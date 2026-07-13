@@ -1,0 +1,20 @@
+model Owner {
+  id                String             @id @default(uuid())
+  email             String             @unique
+  password          String
+  firstName         String
+  lastName          String
+  telephone         String
+  birthDate         DateTime
+  identityType      String?
+  identityNumber    String?            @unique
+  address           String?
+  country           String?
+  city              String?
+  postcode          String?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  salt              String
+  farms             FarmOwner[]
+  transportRequests TransportRequest[]
+}

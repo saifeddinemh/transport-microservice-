@@ -1,0 +1,8 @@
+model FarmOwner {
+  ownerId String
+  farmId  String
+  farm    Farm   @relation(fields: [farmId], references: [id])
+  owner   Owner  @relation(fields: [ownerId], references: [id])
+
+  @@id([ownerId, farmId])
+}

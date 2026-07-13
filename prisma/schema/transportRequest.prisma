@@ -1,0 +1,20 @@
+model TransportRequest {
+  id                  String        @id @default(uuid())
+  requestedBy         String
+  source              String
+  destination         String
+  category            CategoryType
+  weight              Float
+  requestDate         DateTime
+  status              RequestStatus
+  specialRequirements String?
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+  farmId              String
+  ownerId             String
+  employeeId          String?
+  owner               Owner         @relation(fields: [ownerId], references: [id])
+  employee            Employee?     @relation(fields: [employeeId], references: [id])
+  shipment            Shipment?
+  farm                Farm          @relation(fields: [farmId], references: [id])
+}

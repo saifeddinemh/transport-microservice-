@@ -1,0 +1,15 @@
+model Driver {
+  id              String       @id @default(uuid())
+  name            String
+  email           String       @unique
+  phoneNumber     String
+  licenseNumber   String
+  experienceYears Float?
+  status          EntityStatus
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  isArchived      Boolean      @default(false)
+  farmId          String
+  farm            Farm         @relation(fields: [farmId], references: [id])
+  shipments       Shipment[]
+}

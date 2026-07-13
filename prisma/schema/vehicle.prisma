@@ -1,0 +1,18 @@
+model Vehicle {
+  id              String           @id @default(uuid())
+  plateNumber     String
+  type            VehicleType
+  capacity        Float
+  status          VehicleStatus
+  fuelLevel       Float
+  fuelType        FuelType
+  lastMaintenance DateTime?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  isArchived      Boolean          @default(false)
+  farmId          String
+  farm            Farm             @relation(fields: [farmId], references: [id])
+  maintenanceLogs MaintenanceLog[]
+  fuelLogs        FuelLog[]
+  shipments       Shipment[]
+}

@@ -1,0 +1,13 @@
+model FuelLog {
+  id        String   @id @default(uuid())
+  fuelType  FuelType
+  quantity  Float
+  cost      Float
+  filledBy  String
+  date      DateTime
+  odometerReading  Float
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  vehicleId String
+  vehicle   Vehicle  @relation(fields: [vehicleId], references: [id])
+}

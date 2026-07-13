@@ -1,0 +1,84 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["prismaSchemaFolder"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Status {
+  HOLIDAY
+  ACTIVE
+  INACTIVE
+}
+
+enum VehicleType {
+  TRUCK
+  LONGTRUCK
+  VAN
+  TRACTOR
+  TRANSIT
+}
+
+enum FuelType {
+  DIESEL
+  GASOLINE
+  ELECTRIC
+}
+
+enum VehicleStatus {
+  AVAILABLE
+  UNAVAILABLE
+}
+
+enum EntityStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum ShipmentStatus {
+  PENDING
+  PLANNED
+  IN_TRANSIT
+  AT_WAREHOUSE
+  DELIVERED
+  DELAYED
+  CANCELLED
+  RETURNED
+}
+
+enum RequestStatus {
+  PENDING
+  APPROVED
+  CANCELLED
+}
+
+enum CategoryType {
+  PACKAGING
+  CROPS   
+  FERTILIZER
+  SEEDS  
+  MACHINERY
+  CHEMICALS
+  EQUIPMENT
+  FUEL 
+  PERSONAL
+  GENERAL
+}
+
+enum ContractType {
+  PERMANENT
+  TEMPORARY
+  PER_TRIP
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+  MEMBER
+  WORKER
+  POINTER
+  IRRIGATOR
+}
