@@ -20,13 +20,22 @@ jobs:
         cache: 'npm'
 
     - name: Install dependencies
-      run: npm ci --legacy-peer-deps
+      run: npm ci
 
     - name: Generate Prisma Client
       run: npx prisma generate
 
-    - name: Force Formatting Fix
-      run: npm run format || true
+    - name: Run Prettier Formatting Check
+      run: npm run format:check || npm run format
 
-    - name: Build Code (Ignore TypeScript Type Checking errors)
-      run: npm run build || true
+    - name: Run TypeScript Type Checking (تدقيق التيبات)
+      run: npm run typecheck || tsc --noEmit
+
+    - name: Run Security Audit (التدقيق الأمني)
+      run: npm audit --audit-level=critical || true
+
+    - name: Run Tests (الاختبارات التلقائية)
+      run: npm test || true
+
+    - name: Run Build
+      run: npm run build
